@@ -6,11 +6,11 @@
   </button>
 </ng-template>
 
-<div [ngClass]="atWar && 'at-war'">
+<div class="background" [ngClass]="atWar && 'at-war'">
   <mat-grid-list
     gutterSize="0.5rem"
     cols="6"
-    rowHeight="57:89"
+    rowHeight="100:153"
     class="container"
   >
     <mat-grid-tile
@@ -45,7 +45,9 @@
           else gameOverTemplate
         "
       >
-        <button mat-raised-button class="draw" (click)="draw()">DRAW</button>
+        <button mat-raised-button class="draw" (click)="draw()">
+          Draw Cards
+        </button>
       </ng-container>
     </mat-grid-tile>
     <mat-grid-tile

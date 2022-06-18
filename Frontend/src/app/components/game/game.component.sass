@@ -4,7 +4,7 @@ $card-margin-ratio: 0.975
 
 .card
   border: 1px solid black
-  border-radius: 0.5rem
+  border-radius: 12px
   position: absolute
 
 .container
@@ -15,15 +15,11 @@ $card-margin-ratio: 0.975
   margin-top: 21vh
 
 .draw
-  margin: auto
-  align-items: center
   font-size: calc($base-width/10)
 
 .result-text
   font-size: calc($base-width/15)
-  text-align: center
   margin: 0
-  align-items: center
 
 .new-game
   font-size: calc($base-width/15)
@@ -57,11 +53,7 @@ $card-margin-ratio: 0.975
   margin-bottom: calc($base-width*$card-margin-ratio)
 
 .at-war
-  background-color: red
-  display: flex
-  height: 100vh
-  justify-content: center
-  flex-direction: column
+  background-color: red !important
 
 .war-text
   font-size: 27rem
@@ -88,12 +80,12 @@ $card-margin-ratio: 0.975
     -ms-transform: scale(1.05)
     transform: scale(1.05)
 
-
-
 .winner
   animation: breathing 1s
 
-loser
-
-
-//1px solid #e3c152
+.background
+  background-color: rgb(228, 228, 228)
+  display: flex
+  height: 100vh
+  justify-content: center
+  flex-direction: column
