@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Deck, ranks, suits, faces } from 'src/app/deck';
+import { Deck, faces, ranks, suits } from 'src/app/deck';
 import { Card, Player } from 'src/app/model';
 
 @Component({
@@ -9,31 +9,34 @@ import { Card, Player } from 'src/app/model';
 })
 export class GameComponent implements OnInit {
   playerOne: Player = {
+    name: 'Green',
     main: new Deck(),
     discard: new Deck(),
-    tracker: {
-      rank: 'A',
-      suit: '♠',
-    },
   };
   playerTwo: Player = {
+    name: 'Blue',
     main: new Deck(),
     discard: new Deck(),
-    tracker: {
-      rank: 'A',
-      suit: '♠',
-    },
   };
   boardDeck: Deck = new Deck();
   atWar = false;
-
+  winner;
   constructor() {}
 
   ngOnInit(): void {
     this.newGame();
   }
 
+  logWinner(event: any) {
+    console.log(event);
+  }
+
   public newGame() {
+    this.atWar = false;
+    this.playerOne.tracker = this.playerTwo.tracker = {
+      rank: 'A',
+      suit: '♠',
+    };
     this.playerOne.discard.discard();
     this.playerTwo.discard.discard();
     const mainDeck = new Deck();
@@ -63,21 +66,25 @@ export class GameComponent implements OnInit {
     if (
       this.playerOne.discard.cards.length > this.playerTwo.discard.cards.length
     )
-      return 'Green Wins!';
+      return 'Green Wins! 🏆';
     if (
       this.playerOne.discard.cards.length < this.playerTwo.discard.cards.length
     )
-      return 'Red Wins!';
-    return 'Draw 😂!';
+      return 'Blue Wins! 🏆';
+    return 'Draw 😪';
   }
 
   private judge(winner: 'FIRST' | 'SECOND' | 'DRAW') {
     if (winner === 'FIRST') {
       this.playerOne.discard.addCards(this.boardDeck.takeCards());
+      this.winner = 'Green';
+      setTimeout(() => (this.winner = null), 250);
       return;
     }
     if (winner === 'SECOND') {
       this.playerTwo.discard.addCards(this.boardDeck.takeCards());
+      this.winner = 'Blue';
+      setTimeout(() => (this.winner = null), 250);
       return;
     }
     this.atWar = true;

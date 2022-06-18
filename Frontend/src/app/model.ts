@@ -23,9 +23,10 @@ export interface Card {
 }
 
 export interface Player {
+  name: string;
   main: Deck;
   discard: Deck;
-  tracker: Card | undefined;
+  tracker?: Card;
 }
 
 export type Face =

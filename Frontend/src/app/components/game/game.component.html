@@ -1,7 +1,9 @@
 <ng-template #gameOverTemplate>
   <div class="game-result"></div>
   <p class="result-text">{{ gameResult() }}</p>
-  <button mat-raised-button (click)="newGame()">New Game</button>
+  <button class="new-game" mat-raised-button (click)="newGame()">
+    New Game
+  </button>
 </ng-template>
 
 <div [ngClass]="atWar && 'at-war'">
@@ -15,13 +17,25 @@
       colspan="3"
       rowspan="3"
       class="card card-deck card-player-one"
+      [ngClass]="winner === 'Green' && 'winner'"
     >
-      <p class="main">{{ playerOne.main.cards.length }}</p>
+      <p class="main">
+        {{ playerOne.main.cards.length }}
+      </p>
       <p class="discard">({{ playerOne.discard.cards.length }})</p>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="3" class="card card-played">
-      <p class="face" [ngClass]="isRed(playerOne.tracker) && 'suit-red'">
-        {{ getFace(playerOne.tracker) }}
+    <mat-grid-tile
+      colspan="3"
+      rowspan="3"
+      class="card card-played"
+      [ngClass]="winner === 'Green' && 'winner'"
+    >
+      <p
+        *ngIf="playerOne.tracker"
+        class="face"
+        [ngClass]="isRed(playerOne?.tracker) && 'suit-red'"
+      >
+        {{ getFace(playerOne?.tracker) }}
       </p>
     </mat-grid-tile>
     <mat-grid-tile colspan="6">
@@ -38,12 +52,24 @@
       colspan="3"
       rowspan="3"
       class="card card-deck card-player-two"
+      [ngClass]="winner === 'Blue' && 'winner'"
     >
-      <p class="main">{{ playerTwo.main.cards.length }}</p>
+      <p class="main">
+        {{ playerTwo.main.cards.length }}
+      </p>
       <p class="discard">({{ playerTwo.discard.cards.length }})</p>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3" rowspan="3" class="card card-played">
-      <p class="face" [ngClass]="isRed(playerTwo.tracker) && 'suit-red'">
+    <mat-grid-tile
+      colspan="3"
+      rowspan="3"
+      class="card card-played"
+      [ngClass]="winner === 'Blue' && 'winner'"
+    >
+      <p
+        *ngIf="playerTwo.tracker"
+        class="face"
+        [ngClass]="isRed(playerTwo.tracker) && 'suit-red'"
+      >
         {{ getFace(playerTwo.tracker) }}
       </p>
     </mat-grid-tile>

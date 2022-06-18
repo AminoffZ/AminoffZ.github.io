@@ -1,37 +1,40 @@
-$base-width: 24rem
+$base-width: 30vh
 $card-font-ratio: 0.8625
 $card-margin-ratio: 0.975
 
 .card
   border: 1px solid black
   border-radius: 0.5rem
-  font-size: 3rem
   position: absolute
 
 .container
   width: $base-width
-  padding: auto
-  margin: auto
-  margin-top: 3.5rem
   z-index: 2
+  padding-bottom: 0 !important
+  margin: auto
+  margin-top: 21vh
 
 .draw
   margin: auto
   align-items: center
-  font-size: 2.5rem
+  font-size: calc($base-width/10)
 
 .result-text
-  font-size: 1rem
-  margin: 0.1rem
+  font-size: calc($base-width/15)
   text-align: center
+  margin: 0
   align-items: center
+
+.new-game
+  font-size: calc($base-width/15)
 
 .main
   color: white
   margin-bottom: 0
+  font-size: calc($base-width/5)
 
 .discard
-  font-size: 1rem
+  font-size: calc($base-width/10)
   color: white
 
 .card-player-one
@@ -49,9 +52,6 @@ $card-margin-ratio: 0.975
 ::ng-deep .suit-red
   color: red
 
-.mat-grid-list
-  padding: 0 !important
-
 .face
   font-size: calc($base-width*$card-font-ratio)
   margin-bottom: calc($base-width*$card-margin-ratio)
@@ -59,7 +59,9 @@ $card-margin-ratio: 0.975
 .at-war
   background-color: red
   display: flex
-  height: calc(100% - 3rem)
+  height: 100vh
+  justify-content: center
+  flex-direction: column
 
 .war-text
   font-size: 27rem
@@ -70,5 +72,28 @@ $card-margin-ratio: 0.975
   width: 100%
   display: flex
   justify-content: center
-  bottom: -13rem
   overflow: hidden
+
+@keyframes breathing
+  0%
+    -webkit-transform: scale(1.05)
+    -ms-transform: scale(1.05)
+    transform: scale(1.05)
+  50%
+    -webkit-transform: scale(1)
+    -ms-transform: scale(1)
+    transform: scale(1)
+  100%
+    -webkit-transform: scale(1.05)
+    -ms-transform: scale(1.05)
+    transform: scale(1.05)
+
+
+
+.winner
+  animation: breathing 1s
+
+loser
+
+
+//1px solid #e3c152
