@@ -1,0 +1,52 @@
+<ng-template #gameOverTemplate>
+  <div class="game-result"></div>
+  <p class="result-text">{{ gameResult() }}</p>
+  <button mat-raised-button (click)="newGame()">New Game</button>
+</ng-template>
+
+<div [ngClass]="atWar && 'at-war'">
+  <mat-grid-list
+    gutterSize="0.5rem"
+    cols="6"
+    rowHeight="57:89"
+    class="container"
+  >
+    <mat-grid-tile
+      colspan="3"
+      rowspan="3"
+      class="card card-deck card-player-one"
+    >
+      <p class="main">{{ playerOne.main.cards.length }}</p>
+      <p class="discard">({{ playerOne.discard.cards.length }})</p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="3" class="card card-played">
+      <p class="face" [ngClass]="isRed(playerOne.tracker) && 'suit-red'">
+        {{ getFace(playerOne.tracker) }}
+      </p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6">
+      <ng-container
+        *ngIf="
+          playerOne.main.cards.length > 0 && playerTwo.main.cards.length > 0;
+          else gameOverTemplate
+        "
+      >
+        <button mat-raised-button class="draw" (click)="draw()">DRAW</button>
+      </ng-container>
+    </mat-grid-tile>
+    <mat-grid-tile
+      colspan="3"
+      rowspan="3"
+      class="card card-deck card-player-two"
+    >
+      <p class="main">{{ playerTwo.main.cards.length }}</p>
+      <p class="discard">({{ playerTwo.discard.cards.length }})</p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="3" class="card card-played">
+      <p class="face" [ngClass]="isRed(playerTwo.tracker) && 'suit-red'">
+        {{ getFace(playerTwo.tracker) }}
+      </p>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <p class="war-text" *ngIf="atWar">WAR</p>
+</div>

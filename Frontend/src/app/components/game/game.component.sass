@@ -1,0 +1,74 @@
+$base-width: 24rem
+$card-font-ratio: 0.8625
+$card-margin-ratio: 0.975
+
+.card
+  border: 1px solid black
+  border-radius: 0.5rem
+  font-size: 3rem
+  position: absolute
+
+.container
+  width: $base-width
+  padding: auto
+  margin: auto
+  margin-top: 3.5rem
+  z-index: 2
+
+.draw
+  margin: auto
+  align-items: center
+  font-size: 2.5rem
+
+.result-text
+  font-size: 1rem
+  margin: 0.1rem
+  text-align: center
+  align-items: center
+
+.main
+  color: white
+  margin-bottom: 0
+
+.discard
+  font-size: 1rem
+  color: white
+
+.card-player-one
+  background-color: green
+
+.card-player-two
+  background-color: blue
+
+.card-played
+  background-color: white
+
+::ng-deep .mat-grid-tile-content
+  flex-direction: column
+
+::ng-deep .suit-red
+  color: red
+
+.mat-grid-list
+  padding: 0 !important
+
+.face
+  font-size: calc($base-width*$card-font-ratio)
+  margin-bottom: calc($base-width*$card-margin-ratio)
+
+.at-war
+  background-color: red
+  display: flex
+  height: calc(100% - 3rem)
+
+.war-text
+  font-size: 27rem
+  color: white
+  position: absolute
+  z-index: 1
+  text-align: center
+  width: 100%
+  display: flex
+  justify-content: center
+  bottom: -13rem
+  overflow: hidden
