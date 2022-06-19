@@ -24,7 +24,7 @@ export interface Card {
 
 export interface Player {
   name: string;
-  main: Deck;
+  hand: Deck;
   discard: Deck;
   tracker?: Card;
 }

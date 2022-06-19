@@ -19,8 +19,8 @@
       class="card card-deck card-player-one"
       [ngClass]="winner === 'Green' && 'winner'"
     >
-      <p class="main">
-        {{ playerOne.main.cards.length }}
+      <p class="hand">
+        {{ playerOne.hand.cards.length }}
       </p>
       <p class="discard">({{ playerOne.discard.cards.length }})</p>
     </mat-grid-tile>
@@ -41,7 +41,7 @@
     <mat-grid-tile colspan="6">
       <ng-container
         *ngIf="
-          playerOne.main.cards.length > 0 && playerTwo.main.cards.length > 0;
+          playerOne.hand.cards.length > 0 && playerTwo.hand.cards.length > 0;
           else gameOverTemplate
         "
       >
@@ -57,7 +57,7 @@
       [ngClass]="winner === 'Blue' && 'winner'"
     >
       <p class="main">
-        {{ playerTwo.main.cards.length }}
+        {{ playerTwo.hand.cards.length }}
       </p>
       <p class="discard">({{ playerTwo.discard.cards.length }})</p>
     </mat-grid-tile>

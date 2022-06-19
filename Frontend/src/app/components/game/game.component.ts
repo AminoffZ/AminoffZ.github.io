@@ -10,12 +10,12 @@ import { Card, Player } from 'src/app/model';
 export class GameComponent implements OnInit {
   playerOne: Player = {
     name: 'Green',
-    main: new Deck(),
+    hand: new Deck(),
     discard: new Deck(),
   };
   playerTwo: Player = {
     name: 'Blue',
-    main: new Deck(),
+    hand: new Deck(),
     discard: new Deck(),
   };
   boardDeck: Deck = new Deck();
@@ -37,13 +37,14 @@ export class GameComponent implements OnInit {
       rank: 'A',
       suit: '♠',
     };
+    this.boardDeck.discard();
     this.playerOne.discard.discard();
     this.playerTwo.discard.discard();
     const mainDeck = new Deck();
     mainDeck.build();
     mainDeck.shuffle();
-    this.playerOne.main.addCards(mainDeck.takeCards(26));
-    this.playerTwo.main.addCards(mainDeck.takeCards(26));
+    this.playerOne.hand.addCards(mainDeck.takeCards(26));
+    this.playerTwo.hand.addCards(mainDeck.takeCards(26));
   }
 
   getFace(card: Card) {
@@ -52,11 +53,11 @@ export class GameComponent implements OnInit {
 
   draw() {
     this.atWar = false;
-    this.playerOne.tracker = this.playerOne.main.cards.at(-1);
-    this.playerTwo.tracker = this.playerTwo.main.cards.at(-1);
-    const drawnCards = this.playerOne.main
+    this.playerOne.tracker = this.playerOne.hand.cards.at(-1);
+    this.playerTwo.tracker = this.playerTwo.hand.cards.at(-1);
+    const drawnCards = this.playerOne.hand
       .takeCards(1)
-      .concat(this.playerTwo.main.takeCards(1));
+      .concat(this.playerTwo.hand.takeCards(1));
     this.boardDeck.addCards(drawnCards);
     const winner = this.compare(this.playerOne.tracker, this.playerTwo.tracker);
     this.judge(winner);
@@ -92,8 +93,8 @@ export class GameComponent implements OnInit {
   }
 
   war(): void {
-    this.boardDeck.addCards(this.playerOne.main.takeCards(3));
-    this.boardDeck.addCards(this.playerTwo.main.takeCards(3));
+    this.boardDeck.addCards(this.playerOne.hand.takeCards(3));
+    this.boardDeck.addCards(this.playerTwo.hand.takeCards(3));
   }
 
   compare(first: Card, second: Card): 'FIRST' | 'SECOND' | 'DRAW' {
