@@ -43,8 +43,9 @@ export class GameComponent implements OnInit {
     const mainDeck = new Deck();
     mainDeck.build();
     mainDeck.shuffle();
-    this.playerOne.hand.addCards(mainDeck.takeCards(26));
-    this.playerTwo.hand.addCards(mainDeck.takeCards(26));
+    const mainDeckLength = mainDeck.cards.length;
+    this.playerOne.hand.addCards(mainDeck.takeCards(mainDeckLength / 2));
+    this.playerTwo.hand.addCards(mainDeck.takeCards(mainDeckLength / 2));
   }
 
   getFace(card: Card) {
